@@ -11,8 +11,23 @@ let todoList = [
 function addTodo() {
   let inputElement = document.querySelector('#todo-input');
   let dateElement = document.querySelector('#todo-date');
-  let todoItem = inputElement.value;
+  let todoItem = inputElement.value.trim();
   let todoDate = dateElement.value;
+
+  if(todoItem === ''){
+      alert('Please Fill Your Data');
+      return;
+    }
+    if(todoDate === ''){
+      alert('Please Select a Due Date');
+      return;
+    }
+    let today=new Date();
+    let dueDate= new Date(todoDate);
+    if(dueDate < today ){
+      alert('Please select a future date');
+      return;
+    }
   todoList.push({item: todoItem, dueDate: todoDate});
   inputElement.value = '';
   dateElement.value = '';
